@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <img src="img/alebrije.jpg" alt="Logo" class="logo">
+        <h1>Login</h1>
+        
+        <form id="formLogin">
+            <div class="grupo-formulario">
+                <label for="loginCorreo">Correo Electrónico:</label>
+                <input type="email" id="loginCorreo" placeholder="nombre@correo.com" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="loginPassword">Contraseña:</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                <small class="texto-ayuda">
+                    Mínimo: 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 caracter especial.
+                </small>
+            </div>
+            <button type="submit" class="boton-enviar">Iniciar Sesión</button>
+        </form>
+        <a href="index.html" class="enlace-navegacion">Si no tienes cuenta regístrate aquí</a>
+        <img src="img/patronAlebrije.jpg" class="bordeImagen" alt="Ilustración">
+    </div>
+
+    <script src="js/utileria.js"></script>
+    <script>
+        document.getElementById("formLogin").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            let correo = document.getElementById("loginCorreo").value;
+            let pass = document.getElementById("loginPassword").value;
+
+            if (!validarCorreo(correo)) {
+                alert("Estructura de correo no válida.");
+                return;
+            }
+
+            if (!validarPassword(pass)) {
+                alert("Contraseña Insegura: Incluye mínimo 8 caracteres: números, mayúsculas, minúsculas y caracteres especiales.");
+                return;
+            }
+
+            alert("Inicio de sesión correcto");
+            console.log("Validación de login exitosa para: " + correo);
+        });
+    </script>
+</body>
+</html>

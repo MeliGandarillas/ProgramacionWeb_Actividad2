@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libreria utileria</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="contenedor-formulario">
+    <img src="img/alebrije.jpg" alt="Logo" class="logo">
+    <h1>Registro de datos personales.</h1>
+    <p class="subtitulo">Ingrese sus datos personales:</p>
+    <form id="formRegistro">
+            <div class="grupo-formulario">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" placeholder="Ej. Melissa Gandarillas" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="telefono">Teléfono Celular (10 dígitos):</label>
+                <input type="text" id="telefono" placeholder="Ej. 9512234567" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="fechaNac">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNac" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="curp">CURP:</label>
+                <input type="text" id="curp" placeholder="18 caracteres alfanuméricos" required>
+            </div>
+
+            <button type="submit" class="boton-enviar">Registrar Alumno</button>
+        </form>
+
+        <a href="login.html" class="enlace-navegacion">Ir al Login</a>
+        <img src="img/patronAlebrije.jpg" class="bordeImagen" alt="Ilustración">
+    </div>
+
+    <div id="modalExito" class="modal-contenedor">
+        <div class="contenido-modal">
+            <h2>Registro Validado</h2>
+            <p id="modalMensaje"></p>
+            <button type="button" class="boton-cerrar" id="cerrarModal">Finalizar</button>
+        </div>
+    </div>
+
+    <script src="js/utileria.js"></script>
+    <script>
+        document.getElementById("formRegistro").addEventListener("submit", function(e) {
+            e.preventDefault(); 
+            let nombre = document.getElementById("nombre").value;
+            let correo = document.getElementById("correo").value;
+            let telefono = document.getElementById("telefono").value;
+            let fechaNac = document.getElementById("fechaNac").value;
+            let curp = document.getElementById("curp").value;
+
+            if (!soloLetras(nombre)) {
+                alert("Error: El nombre solo debe contener letras y espacios");
+                return;
+            }
+
+            if (!validarCorreo(correo)) {
+                alert("Error: El formato del correo electrónico es inválida");
+                return;
+            }
+
+            if (!validarTelefono(telefono)) {
+                alert("Error: El teléfono celular debe tener exactamente 10 números");
+                return;
+            }
+
+            if (!esMayorDeEdad(fechaNac)) {
+                alert("Error: El estudiante debe ser mayor de edad (18 años o más)");
+                return;
+            }
+
+            if (!validarCurp(curp)) {
+                alert("Error: La curp no es válida o no coincide con fechas lógicas.");
+                return;
+            }
+
+            let edad = calcularEdad(fechaNac);
+            
+            document.getElementById("modalMensaje").innerText = 
+                "El estudiante " + nombre + " fue registrado con éxito.\nEdad calculada: " + edad + " años.";
+            
+            document.getElementById("modalExito").classList.add("visible");
+        });
+
+        // Evento para ocultar el modal
+        document.getElementById("cerrarModal").addEventListener("click", function() {
+            document.getElementById("modalExito").classList.remove("visible");
+            document.getElementById("formRegistro").reset(); // Resetea campos
+        });
+    </script>
+</body>
+</html>
