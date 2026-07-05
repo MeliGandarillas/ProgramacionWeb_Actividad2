@@ -172,4 +172,5 @@ validarTelefono("951 223 4567"); // true
 ---
 
 ## Capturas de pantalla
-img/captura_pantalla.png
+img/captura_pantalla.jpeg
+
