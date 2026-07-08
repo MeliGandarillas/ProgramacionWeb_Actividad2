@@ -174,3 +174,7 @@ validarTelefono("951 223 4567"); // true
 ## Capturas de pantalla
 ![Consola con resultados de validaciones](img/captura_pantalla.jpeg)
 
+
+Esta libreria puede usarse desde: 
+[Link de utileria en npm](https://www.npmjs.com/package/utileria-meli)
+
